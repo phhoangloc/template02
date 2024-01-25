@@ -1,0 +1,98 @@
+.inputA {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    padding: 50px 25px 25px;
+
+    .name {
+        position: absolute;
+        width: max-content;
+        opacity: 1;
+        transition: all 0.5s;
+        z-index: 2;
+    }
+
+    .name_focus {
+        transform: translateY(-1.75rem);
+        opacity: 0.5;
+    }
+
+    .input_box {
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        transition: all 0.5s;
+        overflow: hidden;
+    }
+
+    .input_box::-webkit-scrollbar {
+        display: none
+    }
+
+    .input_box:focus {
+        outline: none;
+
+    }
+}
+
+.input {
+    position: relative;
+    width: 100%;
+    max-width: 275px;
+    margin: 5px auto;
+    height: 50px;
+    background-color: rgba($color: white, $alpha: 0.25);
+    border: 1px solid transparent;
+    transition: all 0.5s;
+    border-radius: 5px;
+
+    .name {
+        position: absolute;
+        z-index: 2;
+        left: 5%;
+        transition: all 0.5s;
+        transform: translateY(1rem);
+        font-size: 0.9rem;
+    }
+
+    .name_focus {
+        transform: translateY(0);
+        opacity: 0.5;
+    }
+
+    .input_box {
+        width: 100%;
+        height: 100%;
+        border: none;
+        background-color: inherit;
+        padding: 1.1rem 5% 5px;
+        font-size: 1rem;
+        color: inherit;
+    }
+
+    .input_box:focus {
+        outline: none;
+    }
+
+}
+
+.input_focus {
+    border: 1px solid var(--main);
+}
+
+.button {
+    width: 100px;
+    height: 40px;
+    margin: 10px auto;
+    background-color: var(--main);
+    color: white;
+
+    button {
+        width: 100%;
+        height: 100%;
+        border: inherit;
+        color: inherit;
+        background-color: inherit;
+        cursor: pointer;
+    }
+}

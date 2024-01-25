@@ -1,0 +1,57 @@
+:root {
+    --main: #cc6600;
+    --light: #fff2e6;
+    --dark: #1a0d00;
+    --white: #fff;
+    --black: #000;
+}
+
+@import "./grid.scss";
+
+* {
+    margin: 0;
+    box-sizing: border-box;
+}
+
+svg {
+    color: var(--main);
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.height-100vh {
+    height: 100vh;
+}
+
+.textAlignCenter {
+    text-align: center;
+}
+
+.light {
+    background-color: var(--light);
+    color: var(--dark);
+}
+
+.dark {
+    background-color: var(--dark);
+    color: var(--light);
+}
+
+.login,
+.signup {
+    width: 90%;
+    min-height: 80%;
+    max-width: 375px;
+    margin: auto;
+    box-shadow: 0px 0px 2px #cc6600;
+    border-radius: 5px;
+
+    .warn {
+        font-size: 0.5rem;
+        color: red;
+    }
+}
