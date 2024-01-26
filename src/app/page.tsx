@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react"
 import store from "@/redux/store"
 import { useRouter } from "next/navigation"
-import Login from "@/component/home/login"
+import Login from "@/component/login"
 export default function Home() {
 
   const toPage = useRouter()

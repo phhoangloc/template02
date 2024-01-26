@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { useState, useEffect } from 'react'
-import Login from './login'
+import Login from '../login'
 import axios from 'axios'
 import Left from './message/left'
 import Right from './message/right'

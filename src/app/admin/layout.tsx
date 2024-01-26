@@ -9,8 +9,8 @@ import SocketProvider from '@/provider/socketProvider'
 import Footer from '@/component/home/footer'
 export const metadata: Metadata = {
     title: {
-        template: '%s | Lockheart',
-        default: 'Home', // a default is required when creating a template
+        template: '%s | Admin',
+        default: 'Admin', // a default is required when creating a template
     },
 }
 
@@ -20,12 +20,9 @@ type Props = {
 
 const layout = ({ children }: Props) => {
     return (
-        <div className='home_layout'>
+        <div className='home_layout center height-100vh textAlignCenter'>
             <SocketProvider>
-                <Menu />
-                <Header />
                 {children}
-                {/* <Footer /> */}
             </SocketProvider>
         </div>
     )

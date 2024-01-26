@@ -51,11 +51,14 @@
   cursor: pointer;
   padding: 5px;
   margin: 5px auto;
+  border-radius: 50%;
+  transition: all 0.25s;
 }
 
 .home_layout .header svg:hover {
-  background-color: var(--main);
-  color: white;
+  background-color: white;
+  color: var(--main);
+  box-shadow: 0px 0px 15px -5px var(--main);
 }
 
 .home_layout .header .icon {
@@ -129,38 +132,37 @@
 
 .home_layout .page {
   min-height: 100vh;
-  max-width: 1200px;
-  margin: auto;
-}
-
-.home_layout .page .title {
-  font-size: calc(2rem + 0.3vw);
-  font-weight: bold;
-  text-align: center;
-  height: 150px;
-  line-height: 150px;
 }
 
 .home_layout .page .cover {
-  width: 90%;
-  height: max-content;
+  width: 100%;
+  height: 100vh;
   margin: auto;
   text-align: center;
-  border-radius: 10px;
   overflow: hidden;
   position: relative;
+  border-radius: 10px;
 }
 
 .home_layout .page .cover video {
-  width: 100%;
+  height: 100%;
+}
+
+@media (min-width: 992px) {
+  .home_layout .page .cover video {
+    height: auto;
+    width: 100%;
+  }
 }
 
 .home_layout .page .cover .tool {
   position: absolute;
-  bottom: 5px;
+  bottom: 0px;
   display: flex;
   height: 30%;
-  width: 100%;
+  width: calc(100%);
+  padding-left: 50px;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .home_layout .page .cover .tool svg {
@@ -175,7 +177,6 @@
   width: calc(100% - 50px);
   height: 100%;
   display: flex;
-  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px;
 }
 
@@ -225,7 +226,7 @@
   padding: 1%;
   text-align: center;
   margin: 10px;
-  box-shadow: 0px 0px 2px var(--main);
+  box-shadow: 0px 10px 20px -10px var(--main);
   font-size: calc(10px + 15%);
   border-radius: 5px;
   cursor: pointer;
@@ -236,6 +237,7 @@
 .home_layout .page .blog .box_content .book_card .card_picture {
   height: 75%;
   overflow: hidden;
+  border-radius: 5px;
 }
 
 .home_layout .page .book .box_content .book_card .card_picture img,
@@ -247,12 +249,12 @@
 .home_layout .page .book .box_content .book_card .card_title,
 .home_layout .page .blog .box_content .book_card .card_title {
   height: 25%;
+  font-size: calc(0.75px + 0.75rem);
 }
 
 .home_layout .page .book .box_content .book_card .card_title .title_book,
 .home_layout .page .blog .box_content .book_card .card_title .title_book {
   font-weight: bold;
-  margin: 5px 0;
 }
 
 .home_layout .page .book .box_content .book_card .card_title .genre_book,
@@ -262,7 +264,7 @@
 
 .home_layout .page .book .box_content .book_card:hover,
 .home_layout .page .blog .box_content .book_card:hover {
-  box-shadow: 0px 0px 10px var(--main);
+  box-shadow: 0px 10px 20px -5px var(--main);
   transform: scale(1.01);
 }
 
@@ -364,6 +366,9 @@
   position: relative;
   cursor: pointer;
   opacity: 0.5;
+  border-radius: 50%;
+  margin: 5px auto;
+  transition: all 0.1s;
 }
 
 .home_layout .message .message_left .item .avata {
@@ -405,9 +410,15 @@
   line-height: 20px;
 }
 
-.home_layout .message .message_left .item:hover {
-  background-color: var(--main);
-  color: white;
+.home_layout .message .message_left .item:hover,
+.home_layout .message .message_left .item_chatting {
+  background-color: white;
+  color: var(--main);
+  box-shadow: 0px 5px 15px -10px var(--main);
+}
+
+.home_layout .message .message_left .item_chatting {
+  opacity: 1;
 }
 
 .home_layout .message .message_left .online {
@@ -431,11 +442,30 @@
   padding: 0 10px;
 }
 
+.home_layout .message .message_right .title span .noti {
+  font-weight: 400;
+  font-size: 0.75rem;
+  animation: notiSpan 1s infinite;
+  color: red;
+}
+
 .home_layout .message .message_right .title span svg {
   width: 20px;
   height: 20px;
   cursor: pointer;
   margin: 0 5px;
+}
+
+@keyframes notiSpan {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .home_layout .message .message_right .view_box {
@@ -464,6 +494,7 @@
   padding: 5px 10px;
   border-radius: 5px;
   color: var(--dark);
+  box-shadow: 0px 5px 15px -10px var(--main);
 }
 
 .home_layout .message .message_right .view_box .client_box {
@@ -530,12 +561,21 @@
   margin: 0;
 }
 
+.home_layout .message .message_right video {
+  position: absolute;
+  top: 50px;
+  right: 0;
+}
+
 @media (min-width: 768px) {
   .home_layout .message .message_left {
     width: 200px;
   }
   .home_layout .message .message_left .item {
     display: flex;
+    width: 90%;
+    border-radius: 10px;
+    margin: 5px auto;
   }
   .home_layout .message .message_left .item .text {
     display: block;
@@ -552,4 +592,41 @@
   .home_layout .message .message_right {
     width: calc(100% - 200px);
   }
+}
+
+.home_layout .home_pages {
+  overflow: scroll;
+}
+
+.home_layout .home_pages .row {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home_layout .detail {
+  display: flex;
+  padding-left: 50px;
+}
+
+.home_layout .detail .left {
+  height: 100vh;
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px;
+}
+
+.home_layout .detail .left img {
+  width: 100%;
+  height: auto;
+}
+
+.home_layout .detail .right {
+  text-align: justify;
+  margin: auto;
+  padding: 20px;
 }

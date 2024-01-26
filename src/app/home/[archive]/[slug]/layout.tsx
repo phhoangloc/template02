@@ -1,32 +1,25 @@
-
 import React from 'react'
-import "../../style/home.css"
 type Props = {
-    children: React.ReactNode,
-    params: {
-        namePage: string
-    }
+    params: { slug: string }
+    children: React.ReactNode
 }
 
 export async function generateMetadata({ params }: Props) {
-
     const capitalizeFirstLetter = (inputString: string) => {
         return inputString.charAt(0).toUpperCase() + inputString.slice(1);
     }
 
     return {
-        title: capitalizeFirstLetter(params.namePage),
+        template: '%s | Lockheart',
+        title: capitalizeFirstLetter(params.slug),
     }
 }
 
+
 const layout = ({ children }: Props) => {
-
     return (
-        <main className='home_layout'>
-            {children}
-        </main>
+        <div>{children}</div>
     )
-
 }
 
 export default layout

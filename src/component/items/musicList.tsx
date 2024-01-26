@@ -15,10 +15,6 @@ const MusicList = () => {
         {
             video: "/video/coffee.mp4",
             audio: "/audio/coffee.mp3"
-        },
-        {
-            video: "/video/xuan.mp4",
-            audio: "/audio/xuan.mp3"
         }
     ]
     return (

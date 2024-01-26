@@ -4,6 +4,7 @@ import store from '@/redux/store'
 
 import Image from 'next/image';
 import axios from 'axios';
+import HomeIcon from '@mui/icons-material/Home';
 
 import { Socket } from 'socket.io-client';
 
@@ -27,7 +28,7 @@ const Left = ({ onlineLists, selectAddress, socket, selectRoom, selectClientId }
         update()
     }, [])
 
-
+    const [address, setAdress] = useState<string>("")
     const enterRoom = async (id: string, username: string) => {
 
         const result = await axios.post(process.env.server_url + 'user/room?clientUser=' + id, {}, {
@@ -47,12 +48,15 @@ const Left = ({ onlineLists, selectAddress, socket, selectRoom, selectClientId }
         socket?.emit("enterRoom", result.data._id)
         selectRoom && selectRoom(result.data._id)
         selectAddress && selectAddress(username)
+        setAdress(username)
         selectClientId && selectClientId(id)
         socket?.emit("signal", { room: result.data._id })
     }
 
     const hiddenRoom = () => {
         selectAddress && selectAddress("")
+        setAdress("")
+
     }
 
     const [notificaion, setNotification] = useState<[]>([])
@@ -73,7 +77,7 @@ const Left = ({ onlineLists, selectAddress, socket, selectRoom, selectClientId }
 
     useEffect(() => {
         getNotificationUnseen()
-    }, [number])
+    }, [])
 
     useEffect(() => {
         socket?.on("signal", (data: any) => setNumber((prev) => prev + 1))
@@ -94,18 +98,18 @@ const Left = ({ onlineLists, selectAddress, socket, selectRoom, selectClientId }
     }, [])
     return (
         <div className={`message_left ${currentTheme ? "light" : "dark"}`}>
-            <div className='item online' onClick={() => hiddenRoom()}>
+            <div className='item online item_chatting' onClick={() => hiddenRoom()}>
                 <div className="avata">
                     {currentUser && currentUser.infor && currentUser.infor.avata ? <Image src={process.env.google_url + currentUser.infor.avata} width={50} height={50} alt='avata' /> : ""}
                 </div>
                 <div className="text">{currentUser.username}</div>
+                <HomeIcon />
             </div>
             {
                 users && users.map((item, index) => {
                     const newnoti = notificaion.filter((noti: any) => noti.from === item._id)
                     const onlines = onlineLists && onlineLists.filter((onl: any) => onl._id === item._id)
-                    console.log(onlines && onlines.length)
-                    return <div className={`item ${onlines && onlines.length ? "online" : ""}`} key={index} onClick={() => { enterRoom(item._id, item.username) }} style={item._id === currentUser._id ? { display: "none" } : {}}>
+                    return <div className={`item ${onlines && onlines.length ? "online" : ""} ${address === item.username ? "item_chatting" : ""}`} key={index} onClick={() => { enterRoom(item._id, item.username) }} style={item._id === currentUser._id ? { display: "none" } : {}}>
                         <div className="avata">
                             {item.infor && item.infor.avata ? <Image src={process.env.google_url + item.infor.avata} width={50} height={50} alt='avata' /> : ""}
                         </div>

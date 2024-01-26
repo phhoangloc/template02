@@ -3,9 +3,12 @@ import axios from 'axios'
 import Image from 'next/image'
 import moment from 'moment'
 import { blogTypeForTopPage } from '@/type/blogType'
+import { useRouter } from 'next/navigation'
+import Blogcard from './blogcard'
 
 const Blog = () => {
 
+    const topage = useRouter()
     const [blogs, setBlogs] = useState<blogTypeForTopPage[]>([])
 
     const getBooks = async () => {
@@ -27,15 +30,7 @@ const Blog = () => {
             <div className="grid_box box_content ">
                 {
                     blogs.map((book, index) =>
-                        <div key={index} className='blog_card xs12 md6 lg4'>
-                            <div className="card_picture">
-                                <Image src={process.env.google_url + book.cover} alt="" width={500} height={500} />
-                            </div>
-                            <div className="card_title center">
-                                <p className='title_blog'><span>{moment(book.createDate).format('YY-MM-DD')}</span> {book.title} </p>
-                                <p className='genre_blog'>{book.genre}</p>
-                            </div>
-                        </div>
+                        <Blogcard blog={book} key={index} />
                     )
                 }
             </div>

@@ -1,9 +1,9 @@
 'use client'
 import React, { useState, useEffect } from 'react';
 import { createContext } from 'react';
-import { Socket, io } from 'socket.io-client';
+import { io } from 'socket.io-client';
 import store from '@/redux/store';
-import { setRefresh } from '@/redux/reducer/RefreshReducer';
+
 const SocketContext = createContext(null);
 
 const SocketProvider = ({ children }: { children: React.ReactNode }) => {

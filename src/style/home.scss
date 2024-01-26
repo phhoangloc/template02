@@ -31,7 +31,6 @@
 
     .menuOpen {
         transform: translateY(0%);
-
     }
 
     .header {
@@ -50,11 +49,14 @@
             cursor: pointer;
             padding: 5px;
             margin: 5px auto;
+            border-radius: 50%;
+            transition: all 0.25s;
         }
 
         svg:hover {
-            background-color: var(--main);
-            color: white;
+            background-color: white;
+            color: var(--main);
+            box-shadow: -0px 0px 15px -5px var(--main);
         }
 
         .icon {
@@ -133,37 +135,33 @@
 
     .page {
         min-height: 100vh;
-        max-width: 1200px;
-        margin: auto;
-
-        .title {
-            font-size: calc(2rem + 0.3vw);
-            font-weight: bold;
-            text-align: center;
-            height: 150px;
-            line-height: 150px;
-        }
 
         .cover {
-            width: 90%;
-            height: max-content;
+            width: 100%;
+            height: 100vh;
             margin: auto;
             text-align: center;
-            border-radius: 10px;
             overflow: hidden;
             position: relative;
+            border-radius: 10px;
 
             video {
-                width: 100%;
-            }
+                height: 100%;
 
+                @media (min-width:992px) {
+                    height: auto;
+                    width: 100%;
+                }
+            }
 
             .tool {
                 position: absolute;
-                bottom: 5px;
+                bottom: 0px;
                 display: flex;
                 height: 30%;
-                width: 100%;
+                width: calc(100%);
+                padding-left: 50px;
+                background-color: rgba($color: black, $alpha: 0.5);
 
                 svg {
                     width: 40px;
@@ -177,7 +175,6 @@
                     width: calc(100% - 50px);
                     height: 100%;
                     display: flex;
-                    background-color: rgba($color: black, $alpha: 0.5);
                     border-radius: 5px;
 
                     .item {
@@ -228,7 +225,7 @@
                     padding: 1%;
                     text-align: center;
                     margin: 10px;
-                    box-shadow: 0px 0px 2px var(--main);
+                    box-shadow: 0px 10px 20px -10px var(--main);
                     font-size: calc(10px + 15%);
                     border-radius: 5px;
                     cursor: pointer;
@@ -237,6 +234,8 @@
                     .card_picture {
                         height: 75%;
                         overflow: hidden;
+                        border-radius: 5px;
+
 
                         img {
                             width: auto;
@@ -246,10 +245,10 @@
 
                     .card_title {
                         height: 25%;
+                        font-size: calc(0.75px + 0.75rem);
 
                         .title_book {
                             font-weight: bold;
-                            margin: 5px 0;
                         }
 
                         .genre_book {
@@ -259,7 +258,7 @@
                 }
 
                 .book_card:hover {
-                    box-shadow: 0px 0px 10px var(--main);
+                    box-shadow: 0px 10px 20px -5px var(--main);
                     transform: scale(1.01);
                 }
 
@@ -357,6 +356,9 @@
                 position: relative;
                 cursor: pointer;
                 opacity: 0.5;
+                border-radius: 50%;
+                margin: 5px auto;
+                transition: all 0.1s;
 
                 .avata {
                     width: 50px;
@@ -401,9 +403,15 @@
 
             }
 
-            .item:hover {
-                background-color: var(--main);
-                color: white;
+            .item:hover,
+            .item_chatting {
+                background-color: white;
+                color: var(--main);
+                box-shadow: 0px 5px 15px -10px var(--main);
+            }
+
+            .item_chatting {
+                opacity: 1;
             }
 
             .online {
@@ -427,12 +435,33 @@
                 padding: 0 10px;
 
                 span {
+                    .noti {
+                        font-weight: 400;
+                        font-size: 0.75rem;
+                        animation: notiSpan 1s infinite;
+                        color: red;
+                    }
+
 
                     svg {
                         width: 20px;
                         height: 20px;
                         cursor: pointer;
                         margin: 0 5px;
+                    }
+                }
+
+                @keyframes notiSpan {
+                    0% {
+                        opacity: 0;
+                    }
+
+                    50% {
+                        opacity: 1;
+                    }
+
+                    100% {
+                        opacity: 0;
                     }
                 }
             }
@@ -461,6 +490,7 @@
                         padding: 5px 10px;
                         border-radius: 5px;
                         color: var(--dark);
+                        box-shadow: 0px 5px 15px -10px var(--main);
                     }
                 }
 
@@ -529,6 +559,12 @@
                     }
                 }
             }
+
+            video {
+                position: absolute;
+                top: 50px;
+                right: 0
+            }
         }
 
         @media (min-width:768px) {
@@ -537,6 +573,9 @@
 
                 .item {
                     display: flex;
+                    width: 90%;
+                    border-radius: 10px;
+                    margin: 5px auto;
 
                     .text {
                         display: block;
@@ -561,4 +600,40 @@
         }
     }
 
+    .home_pages {
+        overflow: scroll;
+
+        .row {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    }
+
+    .detail {
+        display: flex;
+        padding-left: 50px;
+
+        .left {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: 10px;
+
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+
+        .right {
+            text-align: justify;
+            margin: auto;
+            padding: 20px;
+        }
+    }
 }

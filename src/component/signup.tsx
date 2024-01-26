@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import Input from '../items/input'
-import Button from '../items/button'
+import Input from './items/input'
+import Button from './items/button'
 import axios from 'axios'
 import { useRouter } from 'next/navigation'
 import { error } from 'console'

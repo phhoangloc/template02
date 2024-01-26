@@ -37,7 +37,7 @@ const Header = () => {
     const toPage = useRouter()
 
     const toProfile = () => {
-        toPage.push("/profile")
+        toPage.push("/home/profile")
     }
     const logout = () => {
         localStorage.clear()
@@ -90,17 +90,17 @@ const Header = () => {
                 {avata ? <Image width={100} height={100} src={process.env.google_url + avata} alt="avata" onClick={() => setAccountModalOpen(!accountModalOpen)} /> : <PersonIcon onClick={() => setAccountModalOpen(!accountModalOpen)} />}
 
                 {currentUser._id ?
-                    <div className={`accountModal ${accountModalOpen ? "accountModalOpen" : ""} ${currentTheme ? "light" : "dark"}`}>
+                    <div className={`accountModal ${accountModalOpen ? "accountModalOpen" : ""} ${currentTheme ? "light" : "dark"}`} onMouseLeave={() => setAccountModalOpen(false)}>
                         <p onClick={() => toProfile()}>Profile</p>
                         <p onClick={() => logout()}>Log Out</p>
                     </div> :
-                    <div className={`accountModal ${accountModalOpen ? "accountModalOpen" : ""} ${currentTheme ? "light" : "dark"}`}>
+                    <div className={`accountModal ${accountModalOpen ? "accountModalOpen" : ""} ${currentTheme ? "light" : "dark"}`} onMouseLeave={() => setAccountModalOpen(false)}>
                         <p onClick={() => login()}>Log In</p>
                         <p onClick={() => singup()}>Sign Up</p>
                     </div>
                 }
             </div>
-        </div>
+        </div >
     )
 }
 

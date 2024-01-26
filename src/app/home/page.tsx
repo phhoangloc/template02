@@ -8,7 +8,6 @@ const Home = () => {
 
     return (
         <div className='page'>
-            <div className="title">Lock&...</div>
             <Cover />
             <Blog />
             <Book />
