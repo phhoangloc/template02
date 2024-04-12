@@ -1,30 +1,24 @@
-
-import Header from '@/component/home/header'
+import ArchiveMain from '@/component/asset/admin/archiveMain'
+import Header from '@/component/asset/admin/header'
+import Menu from '@/component/asset/admin/menu'
+import Box from '@/component/grid/box'
 import React from 'react'
-import "../../style/home.css"
-
-import Menu from '@/component/home/menu'
-import { Metadata } from 'next'
-import SocketProvider from '@/provider/socketProvider'
-import Footer from '@/component/home/footer'
-export const metadata: Metadata = {
-    title: {
-        template: '%s | Admin',
-        default: 'Admin', // a default is required when creating a template
-    },
-}
 
 type Props = {
-    children: React.ReactNode,
+    children: React.ReactNode
 }
 
 const layout = ({ children }: Props) => {
     return (
-        <div className='home_layout center height-100vh textAlignCenter'>
-            <SocketProvider>
-                {children}
-            </SocketProvider>
-        </div>
+        <Box>
+            < Header />
+            <Box style={{ display: "flex", width: "max-content" }}>
+                <Menu />
+                <ArchiveMain>
+                    {children}
+                </ArchiveMain>
+            </Box>
+        </Box >
     )
 }
 

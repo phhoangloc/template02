@@ -1,0 +1,12 @@
+.divHoverScale1_1:hover {
+  transform: scale(1.1);
+}
+
+.divHoverBGMain:hover {
+  background-color: var(--main);
+  color: var(--light);
+}
+
+.inputFocusOutlineNone {
+  outline: none;
+}

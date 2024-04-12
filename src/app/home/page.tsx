@@ -1,18 +1,11 @@
-'use client'
 import React from 'react'
-import Cover from '@/component/home/cover'
-import Book from '@/component/home/book'
-import Blog from '@/component/home/blog'
 
-const Home = () => {
+type Props = {}
 
+const page = (props: Props) => {
     return (
-        <div className='page'>
-            <Cover />
-            <Blog />
-            <Book />
-        </div>
+        <div>Home</div>
     )
 }
 
-export default Home
+export default page

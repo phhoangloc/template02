@@ -1,17 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ThemeReducer from "./reducer/ThemeReducer";
-import MenuReducer from "./reducer/MenuReducer";
-import UserReducer from "./reducer/UserReducer";
-import RefreshReducer from "./reducer/RefreshReducer";
-import PlayReducer from "./reducer/PlayReducer";
 
+import ThemeReducer from "./reducer/ThemeReduce";
+import UserReducer from "./reducer/UserReduce";
+import RefreshReducer from "./reducer/RefreshReduce";
+import MenuReducer from "./reducer/MenuReduce";
+import AlertReducer from "./reducer/alertReducer";
+import NoticeReducer from "./reducer/noticeReducer";
 const store = configureStore({
     reducer: {
         theme: ThemeReducer.reducer,
-        menu: MenuReducer.reducer,
         user: UserReducer.reducer,
+        menu: MenuReducer.reducer,
         refresh: RefreshReducer.reducer,
-        play: PlayReducer.reducer,
+        alert: AlertReducer.reducer,
+        notice: NoticeReducer.reducer,
     }
 })
 
