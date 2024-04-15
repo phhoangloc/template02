@@ -29,7 +29,7 @@ const Input = ({ onChange, name, value, type, onfocus, disabled }: Props) => {
         height: "50px",
         paddingBottom: "5px",
         borderBottom: "1px solid ",
-        borderColor: "inherit"
+        borderColor: "inherit",
     }
     const boxStyleFocus: React.CSSProperties = {
         width: "80%",
@@ -66,7 +66,7 @@ const Input = ({ onChange, name, value, type, onfocus, disabled }: Props) => {
         background: "none",
         color: "inherit",
         padding: "10px 10px 0",
-        fontSize: "1rem"
+        fontSize: "1rem",
     }
 
     return (

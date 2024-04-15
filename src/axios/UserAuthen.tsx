@@ -58,8 +58,8 @@ const deleteFile = async (p: string, genre: string, name: string, id: string) =>
 }
 
 //Item
-const getItem = async (p: string, a: string, skip: number | undefined, limit: number | undefined) => {
-    const result = await axios.get(process.env.server_url + `${p}/${a}?skip=${skip ? skip : ""}&limit=${limit ? limit : ""}`, {
+const getItem = async (p: string, a: string, search: string, skip: number | undefined, limit: number | undefined) => {
+    const result = await axios.get(process.env.server_url + `${p}/${a}?search=${search}&skip=${skip ? skip : ""}&limit=${limit ? limit : ""}`, {
         headers: {
             'Content-Type': 'application/json',
             'Authorization': localStorage && localStorage.token

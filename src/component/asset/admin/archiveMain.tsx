@@ -19,9 +19,10 @@ const ArchiveMain = ({ children }: Props) => {
     })
 
     return (
-        currentUser._id ? <Box className={`archive ${currentMenu ? "archiveOpen" : ""}`}>
-            {children}
-        </Box> :
+        currentUser._id ?
+            <Box className={`archive ${currentMenu ? "archiveOpen" : ""}`}>
+                {children}
+            </Box> :
             <Box className={`archive textAlignCenter ${currentMenu ? "archiveOpen" : ""}`}>
                 <h3>you haven't login yet </h3>
             </Box>

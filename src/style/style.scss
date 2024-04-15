@@ -13,7 +13,6 @@
 
 * {
     margin: 0;
-    font-family: '__Inter_aaf875', '__Inter_Fallback_aaf875';
 }
 
 svg {
@@ -90,7 +89,6 @@ div {
     width: calc(100vw - 50px);
     transition: all 0.5s;
     min-height: calc(100vh - 50px);
-
 }
 
 .archiveOpen {
@@ -107,6 +105,7 @@ div {
 .menu {
     width: calc(50px);
     transition: all 0.5s;
+    overflow: hidden;
 
     p {
         display: none;

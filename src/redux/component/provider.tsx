@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import store from '../store'
 import { UserAuthen } from '@/axios/UserAuthen'
 import { setUser } from '../reducer/UserReduce'
+import Loading from '@/app/loading'
 type Props = {
     children: React.ReactNode
 }
@@ -23,6 +24,7 @@ const Provider = ({ children }: Props) => {
     const [loading, setLoading] = useState<boolean>(true)
 
     const checkLogin = async () => {
+        setLoading(true)
         const result = await UserAuthen.checkLogin()
 
         if (result.success) {
@@ -41,7 +43,8 @@ const Provider = ({ children }: Props) => {
 
     return (
         <div className={`provider ${currentTheme ? "light" : "dark"}`} >
-            {children}
+
+            {loading ? <Loading /> : children}
         </div>
 
     )

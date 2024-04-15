@@ -52,14 +52,11 @@ const Header = () => {
 
     const [dividerOpen, setDividerOpen] = useState<boolean>(false)
 
-
-
     return (
-        <Box style={{ display: "flex", height: "50px" }}>
+        <Box style={{ display: "flex", height: "50px", width: "100%", overflow: "hidden" }}>
             {currentMenu ?
                 <MenuOpenIcon style={{ width: "30px", height: "30px", margin: "10px" }} onClick={() => store.dispatch(setMenu(false))} /> :
                 <MenuIcon style={{ width: "30px", height: "30px", margin: "10px" }} onClick={() => store.dispatch(setMenu(true))} />}
-
             <Box style={{ margin: "auto 5px auto auto" }}>
                 {currentUser?.avata ?
                     <Image src={process.env.google_url + currentUser?.avata?.name} width={500} height={500} alt='ava' style={{ width: "30px", height: "30px", margin: "10px", cursor: "pointer", borderRadius: "50%" }} onClick={() => setDividerOpen(!dividerOpen)} /> :
@@ -69,11 +66,13 @@ const Header = () => {
                     <LightModeIcon style={{ width: "30px", height: "30px", margin: "10px" }} onClick={() => store.dispatch(setTheme(true))} />}
             </Box>
             {currentUser._id ?
-                <Divider data={profiles}
-                    style={{ position: "absolute", top: "40px", right: "5px", width: "150px", transform: dividerOpen ? "translateX(0%)" : "translateX(110%)", padding: "5px", borderRadius: "5px" }}
+                <Divider
+                    data={profiles}
+                    style={{ position: "absolute", top: "40px", right: "5px", width: "150px", transform: dividerOpen ? "translateX(0%)" : "translateX(110%)", padding: "5px", borderRadius: "5px", zIndex: 2 }}
                     onClick={() => setDividerOpen(false)} /> :
-                <Divider data={deviders}
-                    style={{ position: "absolute", top: "40px", right: "5px", width: "150px", transform: dividerOpen ? "translateX(0%)" : "translateX(110%)", padding: "5px", borderRadius: "5px" }}
+                <Divider
+                    data={deviders}
+                    style={{ position: "absolute", top: "40px", right: "5px", width: "150px", transform: dividerOpen ? "translateX(0%)" : "translateX(110%)", padding: "5px", borderRadius: "5px", zIndex: 2 }}
                     onClick={() => setDividerOpen(false)} />
             }
         </Box>
