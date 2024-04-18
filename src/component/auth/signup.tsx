@@ -4,8 +4,7 @@ import { useRouter } from 'next/navigation'
 import store from '@/redux/store'
 import Input from '../input/input'
 import Button from '../input/button'
-import Link from 'next/link'
-import axios from 'axios'
+import { NoUserAuthen } from '@/axios/NoUserAuthen'
 import Box from '../grid/box'
 type Props = {
     archive: string
@@ -47,13 +46,7 @@ const Signup = ({ archive }: Props) => {
         setErrors(errors)
     }
     const signup = async (body: { username: string, password: string, email: string }) => {
-        const result = await axios.post(process.env.server_url + "signup", body, {
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-        console.log(result)
-
+        const result = await NoUserAuthen.signup(body)
         if (result.data.success) {
             setUsername("")
             setPassword("")
@@ -67,7 +60,7 @@ const Signup = ({ archive }: Props) => {
 
     return (
         <Box className={` ${currentTheme ? "background_light" : "background_dark"} boxShadow center textAlignCenter`}
-            style={{ width: "90%", padding: "50px 0", maxWidth: "375px", margin: "auto", borderRadius: "5px" }}>
+            style={{ width: "90%", padding: "50px", maxWidth: "375px", margin: "auto", borderRadius: "5px" }}>
             <h3>Sign Up</h3>
             <Input name='username' value={username} onChange={(data) => setUsername(data)} />
             <p style={{ fontSize: "0.6rem", color: "red" }}>{Error.username}</p>

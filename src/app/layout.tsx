@@ -23,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className='scroll dark overFlowXHidden'>
-      <body className={`${inter.className}`}>
+      <body className={`${inter.className}`} style={{ maxWidth: "1600px", margin: "auto" }}>
         <Provider>
 
           {children}

@@ -9,8 +9,10 @@ type Props = {
 const ArchiveMain = ({ children }: Props) => {
     const [currentMenu, setCurrentMenu] = useState<boolean>(store.getState().menu)
     const [currentUser, setCurrentUser] = useState<any>(store.getState().user)
+    const [currentTheme, setCurrentTheme] = useState<any>(store.getState().theme)
     const update = () => {
         store.subscribe(() => setCurrentMenu(store.getState().menu))
+        store.subscribe(() => setCurrentTheme(store.getState().theme))
         store.subscribe(() => setCurrentUser(store.getState().user))
     }
 
@@ -24,7 +26,7 @@ const ArchiveMain = ({ children }: Props) => {
                 {children}
             </Box> :
             <Box className={`archive textAlignCenter ${currentMenu ? "archiveOpen" : ""}`}>
-                <h3>you haven't login yet </h3>
+                <h3>you have not login yet </h3>
             </Box>
     )
 }

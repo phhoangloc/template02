@@ -76,6 +76,15 @@ const getOneItembySlug = async (p: string, a: string, s: string) => {
     })
     return result.data
 }
+const getOneUserbyId = async (p: string, a: string, s: string) => {
+    const result = await axios.get(process.env.server_url + p + `/${a}?id=${s}`, {
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': localStorage && localStorage.token
+        },
+    })
+    return result.data
+}
 const createItem = async (p: string, a: string, body: any) => {
     const result = await axios.post(process.env.server_url + p + "/" + a, body, {
         headers: {
@@ -149,6 +158,7 @@ export const UserAuthen = {
     createItem,
     getItem,
     getOneItembySlug,
+    getOneUserbyId,
     getPic,
     deleteFile,
     updateItem,

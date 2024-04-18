@@ -57,6 +57,7 @@ const Header = () => {
             {currentMenu ?
                 <MenuOpenIcon style={{ width: "30px", height: "30px", margin: "10px" }} onClick={() => store.dispatch(setMenu(false))} /> :
                 <MenuIcon style={{ width: "30px", height: "30px", margin: "10px" }} onClick={() => store.dispatch(setMenu(true))} />}
+            <Box><h1>Admin</h1></Box>
             <Box style={{ margin: "auto 5px auto auto" }}>
                 {currentUser?.avata ?
                     <Image src={process.env.google_url + currentUser?.avata?.name} width={500} height={500} alt='ava' style={{ width: "30px", height: "30px", margin: "10px", cursor: "pointer", borderRadius: "50%" }} onClick={() => setDividerOpen(!dividerOpen)} /> :

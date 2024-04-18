@@ -7,6 +7,11 @@
     color: var(--light);
 }
 
+.divHoverOpacity:hover {
+    opacity: 0.5;
+    background-color: rgba($color: #888, $alpha: 0.1);
+}
+
 .inputFocusOutlineNone {
     outline: none;
 }

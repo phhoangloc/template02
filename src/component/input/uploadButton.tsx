@@ -8,9 +8,9 @@ type Props = {
 const UploadButton = ({ size, icon, func }: Props) => {
     const IconRef = useRef<HTMLInputElement | null>(null)
     return (
-        <div className={`upload_button`} style={{ width: size + "px", height: size + "px" }}>
+        <div className={`upload_button`} style={{ padding: "10px", width: "max-content", borderRadius: "5px", background: "#0073e6", color: "white" }}>
             <input ref={IconRef} type="file" style={{ display: "none" }} onChange={(e) => func && func(e)} multiple={true} />
-            <div onClick={() => IconRef.current && IconRef.current.click()} style={{ width: "max-content", margin: "auto" }}>{icon}</div>
+            <div onClick={() => IconRef.current && IconRef.current.click()} style={{ width: "max-content", margin: "auto", cursor: "pointer" }}>{icon}</div>
         </div>
     )
 }

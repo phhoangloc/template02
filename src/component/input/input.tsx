@@ -23,7 +23,7 @@ const Input = ({ onChange, name, value, type, onfocus, disabled }: Props) => {
     const [focus, setFocus] = useState<boolean>(false)
 
     const boxStyle: React.CSSProperties = {
-        width: "80%",
+        width: "100%",
         margin: "10px auto",
         position: "relative",
         height: "50px",
@@ -32,7 +32,7 @@ const Input = ({ onChange, name, value, type, onfocus, disabled }: Props) => {
         borderColor: "inherit",
     }
     const boxStyleFocus: React.CSSProperties = {
-        width: "80%",
+        width: "100%",
         margin: "10px auto",
         position: "relative",
         height: "50px",
@@ -48,7 +48,6 @@ const Input = ({ onChange, name, value, type, onfocus, disabled }: Props) => {
         padding: "0 10px",
         transition: "all 0.5s"
     }
-
     const pStyleFocus: React.CSSProperties = {
         width: "max-content",
         position: "absolute",
@@ -58,7 +57,6 @@ const Input = ({ onChange, name, value, type, onfocus, disabled }: Props) => {
         opacity: 0.5,
         fontSize: "0.9rem"
     }
-
     const inputStyle: React.CSSProperties = {
         width: "100%",
         height: "100%",
@@ -70,9 +68,9 @@ const Input = ({ onChange, name, value, type, onfocus, disabled }: Props) => {
     }
 
     return (
-        <Box style={focus || value ? boxStyleFocus : boxStyle}>
+        <Box className={`${focus || value ? currentTheme ? "background_light" : "background_dark" : null}`} style={focus || value ? boxStyleFocus : boxStyle}>
             <p style={focus || value ? pStyleFocus : pStyle}>{name}</p>
-            <input className="inputFocusOutlineNone"
+            <input className={`inputFocusOutlineNone `}
                 style={inputStyle}
                 disabled={disabled ? disabled : false}
                 value={value}

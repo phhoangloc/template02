@@ -48,7 +48,7 @@ const Login = ({ archive }: Props) => {
     }
     return (
         <Box className={` ${currentTheme ? "background_light" : "background_dark"} boxShadow center textAlignCenter`}
-            style={{ width: "90%", padding: "50px 0", maxWidth: "375px", margin: "auto", borderRadius: "5px" }}>
+            style={{ width: "90%", padding: "50px", maxWidth: "375px", margin: "auto", borderRadius: "5px" }}>
             <h2>Log In</h2>
             <Input name="username" value={username} onChange={(e => setUsername(e))} />
             <Input name="password" type='password' value={password} onChange={(e => setPassword(e))} />

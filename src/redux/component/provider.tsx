@@ -4,6 +4,7 @@ import store from '../store'
 import { UserAuthen } from '@/axios/UserAuthen'
 import { setUser } from '../reducer/UserReduce'
 import Loading from '@/app/loading'
+import Box from '@/component/grid/box'
 type Props = {
     children: React.ReactNode
 }
@@ -42,10 +43,10 @@ const Provider = ({ children }: Props) => {
 
 
     return (
-        <div className={`provider ${currentTheme ? "light" : "dark"}`} >
+        <Box className={`provider ${currentTheme ? "light" : "dark"}`}>
 
             {loading ? <Loading /> : children}
-        </div>
+        </Box>
 
     )
 }
