@@ -32,11 +32,11 @@ const Header = () => {
     const deviders = [
         {
             name: "log in",
-            link: "/admin/login"
+            link: "/login"
         },
         {
             name: "sign up",
-            link: "/admin/signup"
+            link: "/signup"
         }
     ]
     const profiles = [

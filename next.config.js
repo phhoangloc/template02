@@ -8,10 +8,15 @@ const nextConfig = {
                 hostname: 'localhost',
                 port: '4000',
             },
+            {
+                protocol: 'https',
+                hostname: 'locpham.blog',
+            },
         ],
     },
 
     env: {
+        ftp_url: "https://locpham.blog/",
         server_url: "http://localhost:4000/",
         google_url: "https://drive.google.com/uc?id="
     }

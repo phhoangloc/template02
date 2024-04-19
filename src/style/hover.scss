@@ -12,6 +12,14 @@
     background-color: rgba($color: #888, $alpha: 0.1);
 }
 
+.divHoverOpacity1:hover {
+    opacity: 1 !important;
+}
+
+.divHoverColorMain:hover {
+    color: var(--main) !important;
+}
+
 .inputFocusOutlineNone {
     outline: none;
 }

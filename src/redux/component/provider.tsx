@@ -5,6 +5,7 @@ import { UserAuthen } from '@/axios/UserAuthen'
 import { setUser } from '../reducer/UserReduce'
 import Loading from '@/app/loading'
 import Box from '@/component/grid/box'
+import PlayerModal from '@/component/modal/playerModal'
 type Props = {
     children: React.ReactNode
 }
@@ -44,7 +45,7 @@ const Provider = ({ children }: Props) => {
 
     return (
         <Box className={`provider ${currentTheme ? "light" : "dark"}`}>
-
+            <PlayerModal src="https://locpham.blog/file/abide_by.wav" />
             {loading ? <Loading /> : children}
         </Box>
 

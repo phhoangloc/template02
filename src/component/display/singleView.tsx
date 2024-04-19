@@ -6,6 +6,8 @@ import store from '@/redux/store'
 import { UserAuthen } from '@/axios/UserAuthen'
 import { useRouter } from 'next/navigation'
 import BoxDangerous from '../grid/boxDangerous'
+import { Grid } from '@mui/material'
+import Card from './card'
 type Props = {
     archive: string,
     slug: string
@@ -86,20 +88,14 @@ const SingleView = ({ archive, slug }: Props) => {
                     <h2 title={item.name} style={{ paddingBottom: "10px", borderBottom: "1px solid #aaa", width: "100%", textAlign: "center" }}>{item.name}</h2>
                     <BoxDangerous detail={item.detail} style={{ minHeight: "100px", margin: "25px 0 0" }} />
                 </Box>
-                {
-                    item?.lesson ? item.lesson.map((l: any, index: number) =>
-                        <Box key={index}
-
-                            style={{ textAlign: "justify", borderRadius: "5px", padding: "5px 5%" }} >
-                            <Box style={{ display: "flex", padding: "10px 0", borderBottom: "1px solid #aaa", cursor: "pointer" }}
-                                onClick={() => toPage.push("/" + item.host.position + "/" + archive + "/" + item.slug + "/" + l.slug)}>
-                                <h4 style={{ fontWeight: "normal", opacity: 0.75, height: "max-content", margin: "auto 0 0 " }}>Lesson{index + 1}</h4>
-                                <h4 style={{ fontWeight: "bold", fontSize: "1.1rem", margin: "auto auto auto 10px" }}> {l.name}</h4>
-                            </Box>
-                            <BoxDangerous detail={l.detail} style={{ height: "100px" }} />
-                        </Box>)
-                        : null
-                }
+                <Grid>
+                    {
+                        item?.lesson ? item.lesson.map((l: any, index: number) =>
+                            <Card item={l} key={index} type='title' />
+                        )
+                            : null
+                    }
+                </Grid>
             </Box>
         </Box>
     )

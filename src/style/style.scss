@@ -5,7 +5,7 @@
     --main: #0073e6;
     --light: #e6f2ff;
     --dark: #000d1a;
-    --background-light: #fff;
+    --background-light: #ffffff;
     --background-dark: #001a33;
     --box-shadow: 2.5px 5px 10px -5px #222;
     --border: 1px solid rgba(#888, 0.5);
@@ -50,12 +50,12 @@ div {
     background-color: var(--background-light) !important;
 }
 
-.background_dark_005 {
-    background-color: rgba(black, 0.05);
+.background_white {
+    background-color: #f8f8f8
 }
 
-.background_dark_025 {
-    background-color: rgba(black, 0.25);
+.background_black {
+    background-color: rgba(black, 0.1);
 }
 
 .dark {

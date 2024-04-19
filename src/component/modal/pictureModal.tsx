@@ -20,7 +20,9 @@ const PictureModal = ({ open, close, select }: Props) => {
         store.subscribe(() => setCurrentUser(store.getState().user))
     }
 
-    update()
+    useEffect(() => {
+        update()
+    })
 
 
     const [refresh, setRefresh] = useState<number>(0)

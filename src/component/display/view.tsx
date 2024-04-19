@@ -55,6 +55,7 @@ const View = ({ archive, data, edit, sendSelects }: Props) => {
                     case "pic":
                         return <Card item={item} key={index} type='medium' edit={edit} getSelect={(e) => getSelect(e, item, index)} />
                     case "file":
+                        return <Card item={item} key={index} type='file' edit={edit} getSelect={(e) => getSelect(e, item, index)} />
                     case "user":
                         return <Card item={item} key={index} edit={edit} getSelect={(e) => getSelect(e, item, index)} />
                 }

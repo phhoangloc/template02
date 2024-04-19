@@ -59,10 +59,11 @@ const Page = ({ params }: Props) => {
     const getFile = async (e: any, type: string) => {
         var files = e.target.files;
         const file: File = files[0]
+
         var reader: any = new FileReader();
         reader.readAsDataURL(file);
         reader.onloadend = async function () {
-            currentUser.position && await UserAuthen.uploadFile(currentUser.position, file, type)
+            const result = currentUser.position && await UserAuthen.uploadFile(currentUser.position, file, type)
             store.dispatch(setRefresh())
         }
     }

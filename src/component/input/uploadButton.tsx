@@ -1,17 +1,18 @@
 import React, { useRef } from 'react'
+import Box from '../grid/box';
 type Props = {
     icon: React.ReactNode | string;
-    size?: number,
+    size?: number
     func?: (e: React.ChangeEvent<HTMLInputElement>) => void
 }
 
-const UploadButton = ({ size, icon, func }: Props) => {
+const UploadButton = ({ icon, size, func }: Props) => {
     const IconRef = useRef<HTMLInputElement | null>(null)
     return (
-        <div className={`upload_button`} style={{ padding: "10px", width: "max-content", borderRadius: "5px", background: "#0073e6", color: "white" }}>
+        <Box className={`upload_button`} style={{ borderRadius: "5px", background: "#0073e6", color: "white", cursor: "pointer" }}>
             <input ref={IconRef} type="file" style={{ display: "none" }} onChange={(e) => func && func(e)} multiple={true} />
-            <div onClick={() => IconRef.current && IconRef.current.click()} style={{ width: "max-content", margin: "auto", cursor: "pointer" }}>{icon}</div>
-        </div>
+            <Box onClick={() => IconRef.current && IconRef.current.click()} style={{ padding: "5px", width: size + "px", height: size + "px" }}>{icon}</Box>
+        </Box>
     )
 }
 
