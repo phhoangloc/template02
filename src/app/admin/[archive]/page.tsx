@@ -29,7 +29,7 @@ const Page = ({ params }: Props) => {
 
     const [data, setData] = useState<any>()
     const [search, setSearch] = useState<string>("")
-    const limit = 10
+    const limit = 24
     const [page, setPage] = useState<number>(0)
     const [end, setEnd] = useState<boolean>(false)
 

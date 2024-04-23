@@ -79,8 +79,8 @@ const SingleView = ({ archive, slug }: Props) => {
             <Box className={`center xs12 md5 lg4 stickyBox`} style={{ height: "50vh", maxHeight: "400px", margin: "10px", borderRadius: "5px", top: "25%", textAlign: "center", overflow: "hidden" }}>
                 {
                     item?.cover?.name ?
-                        <Image src={process.env.google_url + item?.cover?.name} width={500} height={500} alt='cover' style={{ width: "max-content", height: "100%", margin: "auto" }} /> :
-                        <Image src={"/img/defaultImg.jpg"} width={500} height={500} alt='cover' style={{ width: "max-content", height: "100%", margin: "auto" }} />
+                        <Image src={process.env.google_url + item?.cover?.name} width={500} height={500} alt='cover' style={{ width: "initial", height: "100%", margin: "auto" }} /> :
+                        <Image src={"/img/defaultImg.jpg"} width={500} height={500} alt='cover' style={{ width: "initial", height: "100%", margin: "auto" }} />
                 }
             </Box>
             <Box className={`xs12 md7 lg8 `} style={{ margin: "10px", padding: "1%", overflowX: "hidden", borderRadius: "5px" }}>

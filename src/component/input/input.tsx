@@ -30,6 +30,7 @@ const Input = ({ onChange, name, value, type, onfocus, disabled }: Props) => {
         paddingBottom: "5px",
         borderBottom: "1px solid ",
         borderColor: "inherit",
+        overflow: "hidden"
     }
     const boxStyleFocus: React.CSSProperties = {
         width: "100%",
@@ -39,7 +40,8 @@ const Input = ({ onChange, name, value, type, onfocus, disabled }: Props) => {
         paddingBottom: "5px",
         border: "2px solid ",
         borderRadius: "5px",
-        borderColor: "#0073e6"
+        borderColor: "#0073e6",
+        overflow: "hidden"
     }
     const pStyle: React.CSSProperties = {
         width: "max-content",

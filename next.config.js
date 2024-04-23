@@ -18,6 +18,7 @@ const nextConfig = {
     env: {
         ftp_url: "https://locpham.blog/",
         server_url: "http://localhost:4000/",
+        server_url_: "https://ba-locpham.vercel.app/",
         google_url: "https://drive.google.com/uc?id="
     }
 }
