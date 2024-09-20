@@ -1,0 +1,87 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int         @id @default(autoincrement())
+  archive   String      @default("user")
+  username  String      @unique
+  password  String 
+  email     String      @unique
+  active    Boolean     @default(false)
+  position  Role        @default(user)
+  avataId  Int?           
+  avata    Pic?         @relation("UserAvata", fields: [avataId], references: [id])
+  coverId   Int?    
+  cover     Pic?        @relation("UserCover", fields: [coverId], references: [id])
+  pic       Pic[]
+  news      News[]
+  product   Product[]
+  createdAt DateTime    @default(now())
+}
+
+enum Role {
+  user
+  admin
+}
+
+model Pic {
+  id                Int           @id @default(autoincrement())
+  archive           String        @default("pic")
+  hostId            Int
+  host              User          @relation(fields: [hostId], references: [id])   
+  avataOf           User[]        @relation("UserAvata")
+  coverOf           User[]        @relation("UserCover")
+  coverOfProduct    Product[]     @relation("ProductCover")
+  name              String?      
+  imageOfProduct    ProductImage[] 
+  createdAt DateTime    @default(now())
+}
+
+model News {
+  id        Int         @id @default(autoincrement())
+  archive   String      @default("news")
+  name      String      
+  slug      String      
+  hostId    Int
+  host      User        @relation(fields: [hostId], references: [id])   
+  content   String?            @db.Text
+  createdAt DateTime    @default(now())
+  updateDate        DateTime          @default(now())
+}
+
+model Product {
+  id        Int         @id @default(autoincrement())
+  archive   String      @default("product")
+  name      String      
+  slug      String      
+  hostId    Int
+  host      User        @relation(fields: [hostId], references: [id])   
+  coverId   Int?    
+  cover     Pic?        @relation("ProductCover", fields: [coverId], references: [id])
+  images    ProductImage[] 
+  content   String?     @db.Text
+  createdAt DateTime    @default(now())
+  updateDate        DateTime          @default(now())
+}
+
+model ProductImage {
+  picId       Int
+  pic         Pic         @relation(fields: [picId], references: [id])   
+  productId   Int    
+  product     Product     @relation( fields: [productId], references: [id])
+  createdAt   DateTime    @default(now())
+
+  @@id([picId, productId])
+}

@@ -1,0 +1,19 @@
+get http://localhost:3000/api/page
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2M2IxOTA2ZjA1Yzc0NWNjMDkyNmE3YSIsImlhdCI6MTcyNDAzNzE1OCwiZXhwIjoxNzI0MTIzNTU4fQ.bkXkOzDNngJC9XUjyv-cEqtBOnE9xYKaZRI0920q1aM
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2ODM4YzM4MTExYTBlYTgzODM4MjgxYSIsImlhdCI6MTcyNDAzNzA3NSwiZXhwIjoxNzI0MTIzNDc1fQ.aDtnT8nEE3RGeUKjouWBXH91LJIFrX79LcLOTULjnY0
+Content-Type: application/json
+
+{
+    "content": "<p>Thành công của Công ty Cà phê Starbucks là một trong những câu chuyện kỳ diệu nhất về kinh doanh trong suốt nhiều thập kỷ. Một cửa hàng nhỏ ven sông ở Seattle rốt cuộc lại lớn mạnh và phát triển nên hơn một ngàn sáu trăm cửa hàng trên khắp thế giới và mỗi ngày lại có thêm một cửa hàng mới mọc lên. Tuyệt vời hơn cả, Starbucks đã thành công trong việc giữ vững cam kết về chất lượng sản phẩm ưu việt và mang lại những gì tốt đẹp nhất cho nhân viên của mình.</p><h1>hehe</h1>"
+}
+###
+
+POST http://localhost:3000/api/signup
+Content-Type: application/json
+
+{
+    "username":"locpham",
+    "password":"031090Ph@",
+    "email":"ph.hoangloc@gmail.com"
+}
+###ya29.a0AcM612xc240sPBo3LbzO8c-IXNIOmh1TXzUjCS1klzo13VLAPy8xJ_EmQDhKksOr3g87SHfe5F8Ll-1aatY8Fl_zRhajXG2bHxHREA2ItICcq-SDFSttTYKxPU7XImKCcyDmgPAy6kbAHH4_UtCclHXlvMAJoBgzI9ORqxPNaCgYKASQSARISFQHGX2MiMWjN5FGoIxF8wPz9tqXs8g0175
