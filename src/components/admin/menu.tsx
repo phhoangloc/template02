@@ -33,6 +33,17 @@ const Menu = (props: Props) => {
         },
         {
             icon: <TurnedInIcon className='!w-12 !h-auto p-2' />,
+            title: "Blogs",
+            func: () => { toPage.push("/admin/blog") }
+
+        },
+        {
+            icon: <TurnedInIcon className='!w-12 !h-auto p-2' />,
+            title: "Coffee",
+            func: () => { toPage.push("/admin/coffee") }
+        },
+        {
+            icon: <TurnedInIcon className='!w-12 !h-auto p-2' />,
             title: "Product",
             func: () => { toPage.push("/admin/product") }
         },

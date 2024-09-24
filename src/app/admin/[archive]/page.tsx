@@ -29,6 +29,7 @@ const Page = ({ params }: Props) => {
                 <Signup />
             )
         case "product":
+        case "blog":
         case "news":
             return (
                 <Archive genre={params.archive} />

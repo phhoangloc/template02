@@ -15,7 +15,7 @@ const EditPicture = (props: Props) => {
                 {
                     props.src ?
                         < Image className='object-cover' src={props.src} alt='avata' fill /> :
-                        < div className='h-full bg-slate-100 dark:bg-slate-800  flex flex-col justify-center text-center text-xl'>NO PICTURE</div>
+                        < div className='h-full bg-slate-100 dark:bg-slate-900  flex flex-col justify-center text-center text-xl'>NO PICTURE</div>
                 }
                 <InsertPhotoOutlinedIcon className='!w-10 !h-10 p-1 absolute bottom-1 right-1 cursor-pointer hover:text-white hover:bg-orange-500 ' onClick={() => props.setPictureModal && props.setPictureModal()} />
             </div>
@@ -31,7 +31,7 @@ export const EditAvatar = (props: Props) => {
                 {
                     props.src ?
                         < Image src={props.src} alt='avata' fill className='object-cover' /> :
-                        < div className='h-full bg-slate-100 dark:bg-slate-800  flex flex-col justify-center text-center text-xl'>NO PICTURE</div>
+                        < div className='h-full bg-slate-100 dark:bg-slate-900  flex flex-col justify-center text-center text-xl'>NO PICTURE</div>
                 }
             </div>
             <InsertPhotoOutlinedIcon className='absolute !w-10 !h-10 rounded-[50%] p-2  bottom-[12.5%] right-[12.5%] cursor-pointer hover:text-white hover:bg-orange-500 ' onClick={() => props.setPictureModal && props.setPictureModal()} />

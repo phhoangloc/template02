@@ -1,0 +1,23 @@
+-- AlterTable
+ALTER TABLE `Coffee` MODIFY `archive` VARCHAR(191) NOT NULL DEFAULT 'coffee';
+
+-- CreateTable
+CREATE TABLE `Blog` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `archive` VARCHAR(191) NOT NULL DEFAULT 'blog',
+    `name` VARCHAR(191) NOT NULL,
+    `slug` VARCHAR(191) NOT NULL,
+    `hostId` INTEGER NOT NULL,
+    `coverId` INTEGER NULL,
+    `content` TEXT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updateDate` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- AddForeignKey
+ALTER TABLE `Blog` ADD CONSTRAINT `Blog_hostId_fkey` FOREIGN KEY (`hostId`) REFERENCES `User`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE `Blog` ADD CONSTRAINT `Blog_coverId_fkey` FOREIGN KEY (`coverId`) REFERENCES `Pic`(`id`) ON DELETE SET NULL ON UPDATE CASCADE;

@@ -176,8 +176,8 @@ export const EditDetailbySlug = ({ path1, path2 }: Props) => {
                 </div>
                 {path1 !== "news" &&
                     <div className='w-full pl-2 md:w-1/2'>
-                        <EditPicture src={picturePre || process.env.ftp_url + "template2/" + cover || ""} setPictureModal={() => { setIsEditImages(false), setIsEditCover(true), setModalOpen(true) }} />
-                        <ImportManyPicture src={newimages.map(n => process.env.ftp_url + "template2/" + n.name)} setPictureModal={() => { setIsEditCover(false), setIsEditImages(true), setModalOpen(true) }} onRemove={(index) => { removePic(index) }} />
+                        <EditPicture src={cover ? process.env.ftp_url + "template2/" + cover : undefined} setPictureModal={() => { setIsEditImages(false), setIsEditCover(true), setModalOpen(true) }} />
+                        {path1 === "product" ? <ImportManyPicture src={newimages.map(n => process.env.ftp_url + "template2/" + n.name)} setPictureModal={() => { setIsEditCover(false), setIsEditImages(true), setModalOpen(true) }} onRemove={(index) => { removePic(index) }} /> : null}
                     </div>}
             </div>
             <TextAreaTool value={content} onChange={(v) => { setNewContent(v) }} />

@@ -34,9 +34,6 @@ export default async function handler(
                             id: id
                         },
                         include: {
-                            // id: true,
-                            // username: true,
-                            // email: true,
                             cover: {
                                 select: {
                                     name: true
@@ -48,16 +45,7 @@ export default async function handler(
                                 }
                             }
 
-                            // position: true,
                         }
-                        // select: {
-                        // pic: {
-                        //     select: {
-                        //         id: true,
-                        //         name: true,
-                        //     },
-                        // }
-                        // }
                     })
                     if (user?.id) {
                         const { password, ...userwithoutpassword } = user

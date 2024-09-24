@@ -1,14 +1,19 @@
+'use client'
 import Parallax from '@/components/home/parallax'
-import React from 'react'
-
+import React, { useState } from 'react'
+import Image from 'next/image'
+import Button from '@/components/tool/input/button'
+import Cover from '@/components/home/cover'
+import Header from '@/components/home/header'
 type Props = {}
 
 const Page = (props: Props) => {
+
   return (
     <div>
-      <Parallax />
+      <Header />
+      <Cover />
     </div>
   )
 }
-
 export default Page

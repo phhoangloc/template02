@@ -27,6 +27,8 @@ model User {
   cover     Pic?        @relation("UserCover", fields: [coverId], references: [id])
   pic       Pic[]
   news      News[]
+  blog      Blog[]
+  coffee    Coffee[]
   product   Product[]
   createdAt DateTime    @default(now())
 }
@@ -44,6 +46,8 @@ model Pic {
   avataOf           User[]        @relation("UserAvata")
   coverOf           User[]        @relation("UserCover")
   coverOfProduct    Product[]     @relation("ProductCover")
+  coverOfCoffee     Coffee[]      @relation("CoffeeCover")
+  coverOfBlog       Blog[]        @relation("BlogCover")
   name              String?      
   imageOfProduct    ProductImage[] 
   createdAt DateTime    @default(now())
@@ -58,7 +62,33 @@ model News {
   host      User        @relation(fields: [hostId], references: [id])   
   content   String?            @db.Text
   createdAt DateTime    @default(now())
-  updateDate        DateTime          @default(now())
+  updateDate            DateTime          @default(now())
+}
+model Blog {
+  id        Int         @id @default(autoincrement())
+  archive   String      @default("blog")
+  name      String      
+  slug      String      
+  hostId    Int
+  host      User        @relation(fields: [hostId], references: [id])   
+  coverId   Int?    
+  cover     Pic?        @relation("BlogCover", fields: [coverId], references: [id])
+  content   String?     @db.Text
+  createdAt DateTime    @default(now())
+  updateDate            DateTime          @default(now())
+}
+model Coffee {
+  id        Int         @id @default(autoincrement())
+  archive   String      @default("coffee")
+  name      String      
+  slug      String      
+  hostId    Int
+  host      User        @relation(fields: [hostId], references: [id])   
+  coverId   Int?    
+  cover     Pic?        @relation("CoffeeCover", fields: [coverId], references: [id])
+  content   String?     @db.Text
+  createdAt DateTime    @default(now())
+  updateDate            DateTime          @default(now())
 }
 
 model Product {
@@ -73,7 +103,7 @@ model Product {
   images    ProductImage[] 
   content   String?     @db.Text
   createdAt DateTime    @default(now())
-  updateDate        DateTime          @default(now())
+  updateDate             DateTime          @default(now())
 }
 
 model ProductImage {
