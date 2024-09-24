@@ -4,7 +4,7 @@ import HomeIcon from '@mui/icons-material/Home';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useRouter } from 'next/navigation';
 import store from '@/redux/store';
-import { ChangePageType, setChangePage } from '@/redux/reducer/changPageReduce';
+// import { ChangePageType, setChangePage } from '@/redux/reducer/changPageReduce';
 import moment from 'moment';
 type PropsDetail = {
     data: any,
@@ -49,13 +49,13 @@ export const ArchiveCard = ({ item, onClick }: { item: any, onClick?: (link: str
 }
 export const DetailCard = ({ scroll, data, sendChapter }: PropsDetail) => {
 
-    const [currentChangePage, setCurrentChangePage] = useState<ChangePageType>(store.getState().changePage)
-    const update = () => {
-        store.subscribe(() => setCurrentChangePage(store.getState().changePage))
-    }
-    useEffect(() => {
-        update()
-    })
+    // const [currentChangePage, setCurrentChangePage] = useState<ChangePageType>(store.getState().changePage)
+    // const update = () => {
+    //     store.subscribe(() => setCurrentChangePage(store.getState().changePage))
+    // }
+    // useEffect(() => {
+    //     update()
+    // })
 
     const toPage = useRouter()
 
@@ -65,24 +65,25 @@ export const DetailCard = ({ scroll, data, sendChapter }: PropsDetail) => {
         sendChapter && sendChapter(chapter)
     }, [chapter])
 
-    useEffect(() => {
-        setTimeout(() => {
-            currentChangePage.value && toPage.push(currentChangePage.link)
-        }, 2000)
-    }, [currentChangePage])
+    // useEffect(() => {
+    //     setTimeout(() => {
+    //         currentChangePage.value && toPage.push(currentChangePage.link)
+    //     }, 2000)
+    // }, [currentChangePage])
 
+    console.log(data)
     return (
-        <div className={`bg dp-flex h100p bs-10px br-5px detail-card-in ${currentChangePage.value ? "detail-card-out" : ""}`}>
+        <div className={`bg dp-flex h100p bs-10px br-5px detail-card-in`}>
             <div className="ps-re w100px ta-center dp-flex fd-col jc-center bg1" style={{ writingMode: "vertical-rl", textOrientation: "upright" }}>
-                <HomeIcon className='svg40px ps-ab bottom-50px cs-p ' onClick={() => { store.dispatch(setChangePage({ value: true, link: "/" })) }} />
-                {data.genre !== "page" && <ArrowBackIcon className='svg40px ps-ab bottom-5px cs-p ' onClick={() => { store.dispatch(setChangePage({ value: true, link: ("/" + data.genre) })) }} />}
-                <h3>{data.genre}</h3>
+                {/* <HomeIcon className='svg40px ps-ab bottom-50px cs-p ' onClick={() => { store.dispatch(setChangePage({ value: true, link: "/" })) }} /> */}
+                {/* {data.genre !== "page" && <ArrowBackIcon className='svg40px ps-ab bottom-5px cs-p ' onClick={() => { store.dispatch(setChangePage({ value: true, link: ("/" + data.genre) })) }} />} */}
+                <h3>{data.archive}</h3>
             </div>
             <div className="w100p">
                 {chapter === -1 ?
-                    <div className={`w100p mg-auto  ${data.genre === "book" ? "maxw375px pd-5p" : ""}`}>
+                    <div className={`w100p mg-auto  ${data.archive === "book" ? "maxw375px pd-5p" : ""}`}>
                         {data?.cover?.name ?
-                            <Image src={process.env.ftp_url + "locand/" + data?.cover?.name} width={500} height={500} alt='cover' style={{ objectFit: "cover", width: "100%", height: "auto" }} priority={true} />
+                            <Image src={process.env.ftp_url + "template2/" + data?.cover?.name} width={500} height={500} alt='cover' style={{ objectFit: "cover", width: "100%", height: "auto" }} priority={true} />
                             : <Image src={"/img/main.jpg"} priority={true} width={500} height={500} alt='cover' style={{ objectFit: "cover", width: "100%", height: "auto" }} />
                         }
                     </div> :

@@ -2,8 +2,9 @@
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/navigation'
+
 type Props = {
-    data?: any[]
+    data: any[]
 }
 
 const Parallax = ({ data }: Props) => {
@@ -12,6 +13,7 @@ const Parallax = ({ data }: Props) => {
     const parallaxChild: any = useRef()
 
     const [hover, setHover] = useState<boolean>(false)
+    const [isScroll, setIsScroll] = useState<boolean>(false)
     const [i, setI] = useState<number>(-1)
 
     const [mouseDown, setMountDown] = useState<boolean>(false)
@@ -21,6 +23,7 @@ const Parallax = ({ data }: Props) => {
     const [startY, setStartY] = useState<number>(0)
 
     const onHandleMouseMove = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        setIsScroll(true)
         parallax.current.scrollLeft = scrollLeft - ((e.pageX - startX))
         parallax.current.scrollTop = scrollTop - ((e.pageY - startY))
     }
@@ -30,6 +33,7 @@ const Parallax = ({ data }: Props) => {
         parallaxChild.current?.clientHeight ? parallax.current.scrollTop = `${(parallaxChild.current?.clientHeight - window.innerHeight) / 2}` : null
     }, [parallaxChild.current?.clientWidth, parallaxChild.current?.clientHeight])
 
+
     const toPage = useRouter()
 
     return (
@@ -37,8 +41,28 @@ const Parallax = ({ data }: Props) => {
             className='w-screen h-screen bg-slate-100 scroll-hidden overflow-auto py-4 cursor-grab active:cursor-grabbing'
             onMouseDown={(e) => { setMountDown(true), setStartX(e.pageX), setStartY(e.pageY), setScrollTop(e.currentTarget.scrollTop), setScrollLeft(e.currentTarget.scrollLeft) }}
             onMouseMove={(e) => { mouseDown && onHandleMouseMove(e) }}
-            onMouseUp={() => { setMountDown(false) }}
-            onMouseLeave={() => setMountDown(false)}>
+            onMouseUp={() => { setMountDown(false), setIsScroll(false) }}
+            onMouseLeave={() => { setMountDown(false), setIsScroll(false) }}>
+            <div ref={parallaxChild} className='w-[4000px] flex flex-wrap justify-center ' >
+                {data.length ? data.map((d, index) =>
+                    <div key={index} className='flex flex-col justify-end max-w-[200px] sm:max-w-[275px] md:max-w-[325px]' >
+                        <div className='bg-white rounded select-none shadow-md overflow-hidden mx-4 hover:shadow-lg hover:scale-105 transition-all duration-300' onMouseUp={() => { isScroll === false ? toPage.push("/" + d.archive + "/" + d.slug) : null }}>
+                            <div className=' overflow-hidden flex flex-col justify-center text-center bg-slate-200 m-auto relative'>
+                                <div className="absolute top-0 left-0 w-full h-full z-[1]"></div>
+                                {d.cover ?
+                                    <Image className={`!select-none m-auto !w-full transition-all duration-300`} alt='img' width={500} height={500} src={process.env.ftp_url + "template2/" + d.cover.name} />
+                                    : <div className='aspect-square flex flex-col justify-center'>NO IMAGE</div>}
+                            </div>
+                            <div className='p-4 bg-slate-50 m-auto'>
+                                <p className='overflow-hidden truncate font-bold text-lg' title={d.name}>{d.name}</p>
+                                <p className='opacity-75 text-sm'>{d.archive}</p>
+                            </div>
+                        </div>
+                    </div>) :
+                    <div> Loading ...</div>
+                }
+            </div>
+
         </div>
     )
 
