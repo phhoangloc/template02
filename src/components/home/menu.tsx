@@ -25,8 +25,8 @@ const Menu = (props: Props) => {
             link: "/about",
         },
         {
-            name: "our coffee",
-            link: "/coffee",
+            name: "our product",
+            link: "/product",
         },
         {
             name: "blog",
@@ -45,7 +45,7 @@ const Menu = (props: Props) => {
                 {currentUser.id ?
                     <div className=" bg-slate-50 rounded max-w-[375px] mr-0 ml-auto p-2 mb-2">
                         <div className='relative mx-auto my-4  w-24 h-24 rounded-[50%] overflow-hidden shadow'>
-                            <Image src={process.env.ftp_url + "template2/" + currentUser.avata.name} fill className='object-cover cursor-pointer' alt='avata' />
+                            <Image src={process.env.ftp_url + currentUser.avata.name} fill className='object-cover cursor-pointer' alt='avata' />
                         </div>
                         <div className="text-center">
                             <p className='text-2xl font-bold p-2 '>{currentUser.username}</p>
@@ -63,7 +63,7 @@ const Menu = (props: Props) => {
                 <div className="bg-slate-50 rounded max-w-[375px] mr-0 ml-auto py-4">
                     {
                         menus.map((menu, index) =>
-                            <div key={index} className='font-bold text-xl p-2 cursor-pointer text-center text-slate-600 opacity-75 hover:opacity-100' onClick={() => toPage.push(menu.link)}>
+                            <div key={index} className='font-bold text-xl p-2 cursor-pointer text-center text-slate-600 opacity-75 hover:opacity-100' onClick={() => { toPage.push(menu.link), store.dispatch(setMenu(false)) }}>
                                 <p>{menu.name}</p>
                             </div>)
                     }

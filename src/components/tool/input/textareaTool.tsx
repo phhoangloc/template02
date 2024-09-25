@@ -18,10 +18,12 @@ import BurstModeIcon from '@mui/icons-material/BurstMode';
 import GridViewIcon from '@mui/icons-material/GridView';
 import CodeIcon from '@mui/icons-material/Code';
 import PlaylistAddIcon from '@mui/icons-material/PlaylistAdd';
+import { ApiItem } from '@/api/client';
 
 // import { getItem } from '@/api/client';
 type Props = {
     onChange: (e: string) => void,
+    onClick?: () => void,
     value: string,
     sx?: string,
     h1?: boolean,
@@ -32,7 +34,8 @@ type Props = {
     p?: boolean,
     bold?: boolean,
     italic?: boolean,
-    li?: boolean
+    li?: boolean,
+    importImage?: number
 }
 
 const Image = (props: any) => {
@@ -70,7 +73,7 @@ const decorator = new CompositeDecorator([
 
 const TextAreaTool = (props: Props) => {
 
-    const [modalOpen, setModalOpen] = useState<boolean>(false)
+    // const [modalOpen, setModalOpen] = useState<boolean>(false)
 
     //content
     const [editorState, setEditorState] = useState(EditorState.createEmpty(decorator));
@@ -191,22 +194,21 @@ const TextAreaTool = (props: Props) => {
         imgArr[0]?.src && createImage(imgArr[0].src)
     }, [imgArr])
 
-    const [imgId, setImgId] = useState<string>("")
 
 
-    // const getPicture = async (id: string) => {
-    //     const result = await getItem({ genre: "pic", id })
-    //     await createImage(process.env.ftp_url + "locand/" + result.data[0].name)
-    // }
+    const getPicture = async (id: string) => {
+        const result = await ApiItem({ genre: "pic", id })
+        await createImage(process.env.ftp_url + result.data[0].name)
+    }
 
-    // useEffect(() => {
-    //     imgId && getPicture(imgId)
-    // }, [imgId])
+    useEffect(() => {
+        props.importImage && getPicture(props.importImage.toString())
+    }, [props.importImage])
     return (
-        <div className='my-1 border-[1px] border-slate-200 dark:border-slate-700'>
-            <div className='sticky p-1 bg-slate-50 dark:bg-slate-900 '>
+        <div className='my-1 border-[1px] border-slate-200 dark:border-slate-700 relative'>
+            <div className='sticky p-1 bg-slate-50 dark:bg-slate-900 top-0'>
                 <div className='flex h-12 justify-between border-b-[1px] border-slate-200 dark:border-slate-700'>
-                    <BurstModeIcon className='!w-10 !h-10 p-1 hover:bg-orange-500 hover:text-white rounded cursor-pointer' onClick={() => { setModalOpen(!modalOpen) }} />
+                    <BurstModeIcon className='!w-10 !h-10 p-1 hover:bg-orange-500 hover:text-white rounded cursor-pointer' onClick={() => { props.onClick && props.onClick() }} />
                     <div className='dp-flex'>
                         <GridViewIcon className={`!w-10 !h-10 p-2 rounded cursor-pointer ${isView ? "bg-orange-500 text-white" : ""}`} onClick={() => setIsView(true)} />
                         <CodeIcon className={`!w-10 !h-10 p-2  rounded cursor-pointer ${isView ? "" : "bg-orange-500 text-white"}`} onClick={() => setIsView(false)} />

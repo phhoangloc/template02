@@ -51,13 +51,13 @@ export const EditDetailbySlug = ({ path1, path2 }: Props) => {
     const [imagesPlus, setImagePlus] = useState<any[]>([])
     const [isEditImages, setIsEditImages] = useState<boolean>(false)
 
+    const [importImage, setImportImage] = useState<any>()
+    const [isImportImage, setIsImportIamge] = useState<boolean>(false)
+
     const [slug, setSlug] = useState<string>("")
     const [content, setContent] = useState<string>("")
     const [newContent, setNewContent] = useState<string>("")
 
-    const [picturePre, setPicturePre] = useState<string>("")
-    const [list, setList] = useState<any[]>([])
-    const [listChapter, setListChapter] = useState<any[]>([])
     const [modalOpen, setModalOpen] = useState<boolean>(false)
 
     const body = {
@@ -81,13 +81,12 @@ export const EditDetailbySlug = ({ path1, path2 }: Props) => {
 
     const getItems = async (p: string, a: string, s: string) => {
         const result = await ApiItemUser({ position: p, genre: a, slug: s })
-        if (result.success && result.data[0].id) {
+        if (result.success && result.data[0]?.id) {
             setId(result.data[0].id)
             setName(result.data[0].name)
             setSlug(result.data[0].slug)
             setContent(result.data[0].content)
             setCoverId(result.data[0].coverId)
-            setList(result.data[0].list)
             setImagePlus(result.data[0]?.images ? result.data[0]?.images : [])
         }
     }
@@ -163,45 +162,48 @@ export const EditDetailbySlug = ({ path1, path2 }: Props) => {
     }
 
     return (
-        <div className='h-max bg-white dark:bg-slate-800 shadow-sm m-1 rounded p-6'>
-            <div className='flex mb-2 '>
-                <p onClick={() => toPage.push(`/admin/`)} className="hover:text-orange-500 cursor-pointer" >admin</p>
-                <p className="px-1"> / </p>
-                <p onClick={() => toPage.push(`/admin/${path1}/`)} className="hover:text-orange-500 cursor-pointer" >{path1}</p>
-            </div>
-            <div className='flex flex-wrap'>
-                <div className='w-full md:w-1/2'>
-                    <Input name="title" onChange={(v) => setName(v)} value={name} sx=' mg-bottom-10px ' />
-                    <Input name="slug" onChange={(v) => setSlug(v)} value={slug} sx=' mg-bottom-10px ' />
+        id || path2 === "news" ?
+            <div className='h-max bg-white dark:bg-slate-800 shadow-sm m-1 rounded p-6'>
+                <div className='flex mb-2 '>
+                    <p onClick={() => toPage.push(`/admin/`)} className="hover:text-orange-500 cursor-pointer" >admin</p>
+                    <p className="px-1"> / </p>
+                    <p onClick={() => toPage.push(`/admin/${path1}/`)} className="hover:text-orange-500 cursor-pointer" >{path1}</p>
                 </div>
-                {path1 !== "news" &&
-                    <div className='w-full pl-2 md:w-1/2'>
-                        <EditPicture src={cover ? process.env.ftp_url + "template2/" + cover : undefined} setPictureModal={() => { setIsEditImages(false), setIsEditCover(true), setModalOpen(true) }} />
-                        {path1 === "product" ? <ImportManyPicture src={newimages.map(n => process.env.ftp_url + "template2/" + n.name)} setPictureModal={() => { setIsEditCover(false), setIsEditImages(true), setModalOpen(true) }} onRemove={(index) => { removePic(index) }} /> : null}
-                    </div>}
-            </div>
-            <TextAreaTool value={content} onChange={(v) => { setNewContent(v) }} />
-            <div className='dp-flex '>
-                {id ?
-                    <Button name={saving ? "..." : "save"} onClick={() => updateAnItem(currentUser.position, path1, id, body)} sx="bg-main mg-5px" disable={saving} /> :
-                    <Button name={saving ? "..." : "create"} onClick={() => createNewItem(currentUser.position, path1, body)} disable={saving} />
-                }
-            </div>
-            <ImageModal modalOpen={modalOpen} onCanel={() => setModalOpen(false)}
-                onSubmit={(id) => {
-                    isEditCover && setCoverId(Number(id));
-                    isEditImages && setImagePlus(imgs => imgs.length ? [...imgs.filter(a => a.picId !== id), { picId: id }] : [...images.filter(a => a.picId !== id), { picId: id }])
-                    setModalOpen(false)
-                }}
-                onSendArray={(arr) => {
-                    console.log(arr)
-                    arr.forEach(id => {
+                <div className='flex flex-wrap'>
+                    <div className='w-full md:w-1/2'>
+                        <Input name="title" onChange={(v) => setName(v)} value={name} sx=' mg-bottom-10px ' />
+                        <Input name="slug" onChange={(v) => setSlug(v)} value={slug} sx=' mg-bottom-10px ' />
+                    </div>
+                    {path1 !== "news" && path1 !== "singlepage" &&
+                        <div className='w-full pl-2 md:w-1/2'>
+                            <EditPicture src={cover ? process.env.ftp_url + cover : undefined} setPictureModal={() => { setIsEditImages(false), setIsEditCover(true), setModalOpen(true) }} />
+                            {path1 === "product" ? <ImportManyPicture src={newimages.map(n => process.env.ftp_url + n.name)} setPictureModal={() => { setIsEditCover(false), setIsEditImages(true), setModalOpen(true) }} onRemove={(index) => { removePic(index) }} /> : null}
+                        </div>}
+                </div>
+                <TextAreaTool value={content} onChange={(v) => { setNewContent(v) }} onClick={() => { setModalOpen(true); setIsImportIamge(true) }} importImage={importImage} />
+                <div className='dp-flex '>
+                    {id ?
+                        <Button name={saving ? "..." : "save"} onClick={() => updateAnItem(currentUser.position, path1, id, body)} sx="bg-main mg-5px" disable={saving} /> :
+                        <Button name={saving ? "..." : "create"} onClick={() => createNewItem(currentUser.position, path1, body)} disable={saving} />
+                    }
+                </div>
+                <ImageModal modalOpen={modalOpen} onCanel={() => setModalOpen(false)}
+                    onSubmit={(id) => {
+                        isEditCover && setCoverId(Number(id));
+                        isImportImage && setImportImage(Number(id))
                         isEditImages && setImagePlus(imgs => imgs.length ? [...imgs.filter(a => a.picId !== id), { picId: id }] : [...images.filter(a => a.picId !== id), { picId: id }])
-                    });
+                        setModalOpen(false)
+                    }}
+                    onSendArray={(arr) => {
+                        console.log(arr)
+                        arr.forEach(id => {
+                            isEditImages && setImagePlus(imgs => imgs.length ? [...imgs.filter(a => a.picId !== id), { picId: id }] : [...images.filter(a => a.picId !== id), { picId: id }])
+                        });
 
-                    setModalOpen(false)
-                }} />
-        </div >
+                        setModalOpen(false)
+                    }} />
+            </div > :
+            "NOT FOUND"
     )
 }
 export const EditDetailById = ({ path1, path2 }: Props) => {
@@ -321,10 +323,10 @@ export const EditDetailById = ({ path1, path2 }: Props) => {
             }} />
             <div className='pt-5'>
                 <div className="mb-5">
-                    <EditPicture src={process.env.ftp_url + "template2/" + cover?.name} setPictureModal={() => { setModalOpen(true), setIsUpdateCover(true), setIsUpdateAvata(false) }} />
+                    <EditPicture src={process.env.ftp_url + cover?.name} setPictureModal={() => { setModalOpen(true), setIsUpdateCover(true), setIsUpdateAvata(false) }} />
                 </div>
                 <div className="w-full mt-[-10%]">
-                    <EditAvatar src={process.env.ftp_url + "template2/" + avata?.name} setPictureModal={() => { setModalOpen(true), setIsUpdateCover(false), setIsUpdateAvata(true) }} />
+                    <EditAvatar src={process.env.ftp_url + avata?.name} setPictureModal={() => { setModalOpen(true), setIsUpdateCover(false), setIsUpdateAvata(true) }} />
 
                 </div>
                 <div className="w-max m-auto py-10 text-center">

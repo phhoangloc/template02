@@ -33,15 +33,9 @@ const image = async (
                     take: query.limit ? Number(query.limit) : undefined,
                 }
             )
-            if (pics.length) {
-                result.success = true
-                result.data = pics
-                res.json(result)
-            } else {
-                result.success = false
-                result.data = []
-                res.json(result)
-            }
+            result.success = true
+            result.data = pics
+            res.json(result)
             break
     }
 }

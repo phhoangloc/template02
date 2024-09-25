@@ -27,6 +27,12 @@ const Menu = (props: Props) => {
         },
         {
             icon: <TurnedInIcon className='!w-12 !h-auto p-2' />,
+            title: "Pages",
+            func: () => { toPage.push("/admin/singlepage") }
+
+        },
+        {
+            icon: <TurnedInIcon className='!w-12 !h-auto p-2' />,
             title: "News",
             func: () => { toPage.push("/admin/news") }
 
@@ -36,11 +42,6 @@ const Menu = (props: Props) => {
             title: "Blogs",
             func: () => { toPage.push("/admin/blog") }
 
-        },
-        {
-            icon: <TurnedInIcon className='!w-12 !h-auto p-2' />,
-            title: "Coffee",
-            func: () => { toPage.push("/admin/coffee") }
         },
         {
             icon: <TurnedInIcon className='!w-12 !h-auto p-2' />,

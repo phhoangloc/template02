@@ -25,14 +25,22 @@ export const ApiSignup = async (body: { username: string, password: string, emai
     return result.data
 }
 export const ApiItem = async ({ genre, search, id, slug, sort, skip, limit }: BodyType) => {
-    const result = await axios.get("/api/" + genre +
-        "?genre=" + `${genre ? genre : ""}` +
-        "&search=" + `${search ? search : ""}` +
-        "&id=" + `${id ? id : ""}` +
-        "&slug=" + `${slug ? slug : ""}` +
-        "&skip=" + `${skip ? skip : ""}` +
-        "&sort=" + `${sort ? sort : ""}` +
-        "&limit=" + `${limit ? limit : ""}`
-    )
-    return result.data
+    try {
+        const result = await axios.get("/api/" +
+            "/" + genre +
+            "?genre=" + genre +
+            "&search=" + `${search ? search : ""}` +
+            "&id=" + `${id ? id : ""}` +
+            "&slug=" + `${slug ? slug : ""}` +
+            "&skip=" + `${skip ? skip : ""}` +
+            "&sort=" + `${sort ? sort : ""}` +
+            "&limit=" + `${limit ? limit : ""}`
+        )
+        return result.data
+    } catch (error) {
+        return {
+            success: false,
+            error
+        }
+    }
 }

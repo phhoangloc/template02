@@ -50,11 +50,11 @@ const Parallax = ({ data }: Props) => {
                             <div className=' overflow-hidden flex flex-col justify-center text-center bg-slate-200 m-auto relative'>
                                 <div className="absolute top-0 left-0 w-full h-full z-[1]"></div>
                                 {d.cover ?
-                                    <Image className={`!select-none m-auto !w-full transition-all duration-300`} alt='img' width={500} height={500} src={process.env.ftp_url + "template2/" + d.cover.name} />
+                                    <Image className={`!select-none m-auto !w-full transition-all duration-300`} alt='img' width={500} height={500} src={process.env.ftp_url + d.cover.name} />
                                     : <div className='aspect-square flex flex-col justify-center'>NO IMAGE</div>}
                             </div>
                             <div className='p-4 bg-slate-50 m-auto'>
-                                <p className='overflow-hidden truncate font-bold text-lg' title={d.name}>{d.name}</p>
+                                <p className='overflow-hidden truncate font-bold' title={d.name}>{d.name}</p>
                                 <p className='opacity-75 text-sm'>{d.archive}</p>
                             </div>
                         </div>

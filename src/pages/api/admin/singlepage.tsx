@@ -24,14 +24,12 @@ export default async function handler(
         id: body.id,
         name: body.name,
         slug: body.slug,
-        coverId: body.coverId,
-        hostId: id,
         content: body.content,
     }
     if (position === "admin") {
         switch (method) {
             case "GET":
-                let blog: any = await prisma.blog.findMany({
+                let singlePage: any = await prisma.singlePage.findMany({
                     where: {
                         archive: query.genre?.toString() ? query.genre?.toString() : undefined,
                         id: Number(query?.id) ? Number(query?.id) : undefined,
@@ -41,28 +39,33 @@ export default async function handler(
                     skip: query.skip ? Number(query.skip) : undefined,
                     take: query.limit ? Number(query.limit) : undefined,
                     orderBy: {
-                        createdAt: 'desc', // Sắp xếp từ cũ đến mới
+                        createdAt: 'desc'
                     },
                 })
-                result.success = true
-                result.data = blog
-                res.json(result)
+                if (singlePage.length) {
+                    result.success = true
+                    result.data = singlePage
+                    res.json(result)
+                } else {
+                    result.success = false
+                    res.json(result)
+                }
                 break
             case "POST":
-                await prisma.blog.create({ data: bodyCorrect })
+                await prisma.singlePage.create({ data: bodyCorrect })
                     .catch((error: Error) => {
                         result.message = error.message
                         res.json(result)
                     })
                     .then((data: any) => {
                         result.success = true
-                        result.message = "your blog is created successfull"
+                        result.message = "your page is created successfull"
                         result.data = data
                         res.json(result)
                     })
                 break
             case "PUT":
-                await prisma.blog.update({
+                await prisma.singlePage.update({
                     where: { id: Number(query.id) },
                     data: bodyCorrect
                 })
@@ -72,12 +75,12 @@ export default async function handler(
                     })
                     .then((data: any) => {
                         result.success = true
-                        result.message = "your blog is updated successfull"
+                        result.message = "your page is updated successfull"
                         res.json(result)
                     })
                 break
             case "DELETE":
-                await prisma.blog.delete({
+                await prisma.singlePage.delete({
                     where: { id: Number(query.id) },
                 })
                     .catch((error: Error) => {
@@ -86,7 +89,7 @@ export default async function handler(
                     })
                     .then((data: any) => {
                         result.success = true
-                        result.message = "your blog is deleted successfull"
+                        result.message = "your page is deleted successfull"
                         res.json(result)
                     })
         }

@@ -86,7 +86,7 @@ const ImageModal = ({ modalOpen, onCanel, onSubmit, onSendArray }: Props) => {
                 {
                     data.map((d, index) =>
                         <div key={index} className={`relative w100p aspect-square overflow-hidden rounded border-[1px] flex flex-col justify-center text-center cursor-pointer shadow-lg border-slate-100 dark:border-slate-800 ${arrId.includes(d.id) ? "shadow-slate-500" : ""}`} onClick={(e) => { onClick(e, d.id) }} >
-                            <Image className='hover:scale-110 transition-all duration-300' quality={100} src={process.env.ftp_url + "template2/" + d.name} fill alt="" sizes='100%' priority style={{ objectFit: "cover", }} />
+                            <Image className='hover:scale-110 transition-all duration-300' quality={100} src={process.env.ftp_url + d.name} fill alt="" sizes='100%' priority style={{ objectFit: "cover", }} />
                         </div>
                     )
                 }

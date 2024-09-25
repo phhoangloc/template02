@@ -17,3 +17,6 @@ Content-Type: application/json
     "email":"ph.hoangloc@gmail.com"
 }
 ###ya29.a0AcM612xc240sPBo3LbzO8c-IXNIOmh1TXzUjCS1klzo13VLAPy8xJ_EmQDhKksOr3g87SHfe5F8Ll-1aatY8Fl_zRhajXG2bHxHREA2ItICcq-SDFSttTYKxPU7XImKCcyDmgPAy6kbAHH4_UtCclHXlvMAJoBgzI9ORqxPNaCgYKASQSARISFQHGX2MiMWjN5FGoIxF8wPz9tqXs8g0175
+
+###
+GET http://localhost:3000/api/blog

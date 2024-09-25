@@ -151,9 +151,13 @@ export const Archive = ({ genre }: Props) => {
                                 <p className="text-xs opacity-50"> {n.position || n.updateDate && moment(n.updateDate).format("MM/DD") || moment(n.createDate).format("MM/DD")}</p>
                             </div>
                             <div className="hidden w-max md:flex">
-                                <Link style={{ textDecoration: "none", color: "inherit" }} href={n.slug ? "/" + n.genre + "/" + n.slug : "/" + n.genre + "/" + n._id} target='_blank'>
-                                    <RemoveRedEyeOutlinedIcon className=' !w-auto !h-full p-2 cursor-pointer hover:text-orange-500 ' />
-                                </Link>
+                                {genre === "singlepage" ?
+                                    <Link style={{ textDecoration: "none", color: "inherit" }} href={n.slug ? "/" + n.slug : "/" + n.archive + "/" + n._id} target='_blank'>
+                                        <RemoveRedEyeOutlinedIcon className=' !w-auto !h-full p-2 cursor-pointer hover:text-orange-500 ' />
+                                    </Link>
+                                    : <Link style={{ textDecoration: "none", color: "inherit" }} href={n.slug ? "/" + n.archive + "/" + n.slug : "/" + n.archive + "/" + n._id} target='_blank'>
+                                        <RemoveRedEyeOutlinedIcon className=' !w-auto !h-full p-2 cursor-pointer hover:text-orange-500 ' />
+                                    </Link>}
                                 <DeleteOutlineOutlinedIcon className=' !w-auto !h-full p-2 cursor-pointer hover:text-orange-500' onClick={() => deleteItem(n.id)} />
                             </div>
                         </div>
@@ -300,7 +304,7 @@ export const ArchivePic = ({ edit, defaultlimit, type }: PropsArchivePic) => {
         }
     }, [currentAlert, currentUser, isUpload, files])
     useEffect(() => {
-        isCopyLink && navigator.clipboard.writeText(process.env.ftp_url + "ftp_locpham/" + items[i].name);
+        isCopyLink && navigator.clipboard.writeText(process.env.ftp_url + "template2/" + items[i].name);
         isCopyLink && store.dispatch(setNotice({ open: true, success: false, msg: "copied" }))
         setTimeout(() => {
             store.dispatch(setNotice({ open: false, success: false, msg: "" }))
@@ -308,12 +312,12 @@ export const ArchivePic = ({ edit, defaultlimit, type }: PropsArchivePic) => {
     }, [isCopyLink])
 
     return (
-        <div className='w-full h-full'>
+        <div className='w-full'>
             {i !== -1 &&
                 <div className='fixed w-screen h-screen top-0 left-0 backdrop-brightness-50 backdrop-blur-sm z-[1] flex flex-col justify-center'>
                     <div className="w-3/4 max-w-[992px] m-auto p-4 rounded grid grid-cols-1 md:grid-cols-2 gap-1  bg-slate-50 dark:bg-slate-800">
                         <div className="relative w-full aspect-video rounded overflow-hidden p-1">
-                            <Image quality={100} src={process.env.ftp_url + "template2/" + items[i].name} fill alt="" sizes='100%' priority style={{ objectFit: "cover", }} />
+                            <Image quality={100} src={process.env.ftp_url + items[i].name} fill alt="" sizes='100%' priority style={{ objectFit: "cover", }} />
                         </div>
                         <div className="relative w-full aspect-video p-1">
                             <Input name="name" value={items[i].name} onChange={() => { }} disabled={true} />
@@ -333,7 +337,7 @@ export const ArchivePic = ({ edit, defaultlimit, type }: PropsArchivePic) => {
                 {
                     items.map((item, index) =>
                         <div key={index} className=' relative w100p aspect-square overflow-hidden rounded border-[1px] flex flex-col justify-center text-center cursor-pointer shadow-lg border-slate-100 dark:border-slate-800' onClick={() => setI(index)}>
-                            <Image className='opacity-90 hover:opacity-100 hover:scale-105 transition-all duration-300' quality={100} src={process.env.ftp_url + "template2/" + item.name} fill alt="" sizes='100%' priority style={{ objectFit: "cover", }} />
+                            <Image className='opacity-90 hover:opacity-100 hover:scale-105 transition-all duration-300' quality={100} src={process.env.ftp_url + item.name} fill alt="" sizes='100%' priority style={{ objectFit: "cover", }} />
                         </div>
                     )
                 }

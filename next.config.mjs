@@ -12,7 +12,7 @@ const nextConfig = {
     },
     env: {
         HOMEPAGE_URL: "https://buoncf.jp/",
-        ftp_url: "https://buoncf.jp/",
+        ftp_url: "https://buoncf.jp/template2/",
 
     }
 };

@@ -28,6 +28,7 @@ const Page = ({ params }: Props) => {
             return (
                 <Signup />
             )
+        case "singlepage":
         case "product":
         case "blog":
         case "news":
@@ -42,10 +43,6 @@ const Page = ({ params }: Props) => {
             return (
                 <EditDetailById path1={"user"} path2={currentUser.id} />
             )
-        // case "user":
-        //     return (
-        //         <Archive genre={props.params.archive} />
-        //     )
 
         default:
             return "NOT FOUND"
